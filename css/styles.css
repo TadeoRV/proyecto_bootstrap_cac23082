@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Work+Sans:wght@100;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+}
+
+.colorNav {
+    background-color: #353a40;
+}
+
+.container .navbar-brand {
+    color: #FAF5E6;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    color: #FAF5E6
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #9B9A99;
+}
+
+.navbar-light .navbar-nav .comprarTickets {
+    color: #29A744;
+}
+
+
+.carousel-inner {
+    height: 80vh;
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+}
+
+.carousel-caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.carousel-caption p {
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.carousel-caption .cont-conferencia .comprar-tickets {
+    background-color: #29A744;
+}
+
+.sectionOradores h2 {
+    height: 10%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 530;
+}
+
+.sectionOradores .spanOradores {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.card {
+    margin: 10px 0;
+}
+
+.card .card-body .card-link {
+    padding: 2px 5px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px
+}
+
+.btn-js {
+    color: #353a40;
+    font-weight: 600;
+}
+
+.card .card-body .btn-react {
+    margin-left: 3px;
+    color: white;
+
+}
+
+.btn-negocios {
+    color: white;
+}
+
+.card .card-body .btn-startups {
+    margin-left: 3px;
+    color: white;
+}
+
+.card .card-body .card-title {
+    font-weight: 700;
+}
+
+.carta-steve {
+    padding-bottom: 10px;
+}
+
+.contHonolulu {
+    height: 100vh;
+}
+
+.honolulu {
+    height: 50%;
+    background-image: url(../assets/img/honolulu.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(255, 254, 254);
+}
+
+
+.textoHonolulu {
+    height: 50%;
+    padding: 1rem;
+    border: 1px solid white;
+    color: white;
+    background-color: #353a40;
+    line-height: 1.5rem;
+}
+
+
+.textoHonolulu h2 {
+    margin-bottom: 1rem;
+}
+
+.textoHonolulu a {
+    margin-top: 1rem;
+    padding: 0.3rem;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #f7f7f7;
+    border-radius: 6px;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.secForm {
+    margin: 2rem 0;
+}
+
+.secForm h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.secForm span {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.secForm h3 {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: center;
+}
+
+.secForm .btn {
+    margin-top: 1rem;
+    color: white;
+    background-color: #96C93E;
+    font-size: 2rem;
+}
+
+.cont-footer {
+    background-image: linear-gradient(to right top, #1d3744, #1d3e4f, #1d445a, #1d4b65, #1d5271);
+}
+
+.cont-footer .nav-link {
+    color: white;
+}
+
+/*
+.footer {
+    width: 100%;
+    height: 30vh;
+    background-image: linear-gradient(to right top, #1d3744, #1d3e4f, #1d445a, #1d4b65, #1d5271);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #ffffff;
+}
+*/
+@media screen and (min-width: 768px) {
+
+
+    .contenedorNav {
+        height: 12%;
+        flex-direction: row;
+        align-items: normal;
+    }
+
+    .contenedorLogo {
+        margin-bottom: 0rem;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .listaNav {
+        flex-direction: row;
+    }
+
+    .carousel-caption {
+        justify-content: center;
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    .cont-conferencia {
+        width: 50%;
+    }
+
+    .sectionOradores {
+        height: 80vh;
+    }
+
+    .contHonolulu {
+        height: 40vh;
+    }
+
+    .honolulu {
+        height: 100%;
+    }
+
+    .textoHonolulu {
+        height: 100%;
+    }
+
+    .nav-footer {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+}
