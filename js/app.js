@@ -1,93 +1,130 @@
-let form = document.querySelector("#form");
-let submit = document.querySelector("#submit");
-let qtyInput = document.querySelector("#qtyInput");
-let catInput = document.querySelector("#catInput");
-let price = document.querySelector("#price");
-let qtyErr = document.querySelector("#qtyErr");
-let catErr = document.querySelector("#catErr");
-let reset = document.querySelector("#reset");
+let form = document.querySelector("#form");                     //Form
+let nameInput = document.querySelector("#name");                //Input Nombre
+let nameSpan = document.querySelector("#nameSpan");             //Span  Nombre
+let lastNameInput = document.querySelector("#lastName");        //Input Apellido
+let lastNameSpan = document.querySelector("#lastNameSpan");     //Span Apellido
+let mailInput = document.querySelector("#mail");                //Input Correo
+let mailSpan = document.querySelector("#mailSpan");             //Span Correo
+let qtyInput = document.querySelector("#qtyInput");             //Input Cantidad
+let qtySpan = document.querySelector("#qtySpan");               //Span  Cantidad
+let catInput = document.querySelector("#catInput");             //Input Categoría / Descuento
+let catSpan = document.querySelector("#catSpan");               //Span  Categoria / Descuento
+let price = document.querySelector("#price");                   //Display del Precio
+let submit = document.querySelector("#submit");                 //Botón Enviar
+let reset = document.querySelector("#reset");                   //Boton Reset
 const unit = 200;
 
 
-form.addEventListener("submit", e => {
+form.addEventListener("submit", e => {                                                          // Evento Submit
     e.preventDefault();
-    const qty = parseInt(qtyInput.value);
-    const cat = parseFloat(catInput.value);
-    calculatePrice(qty, cat);
+    calculatePrice();
 })
 
-let calculatePrice = (qty, cat) => {
-    if (qty <= 0 || isNaN(qty)) {
-        qtyErr.innerText = "- Por favor ingrese un número válido mayor a 0";
-        price.value = "";
-    } else {
-        qtyErr.innerText = "";
-
-        if (isNaN(cat)) {
-            catErr.innerText = "- Por favor seleccione su categoría";
-            price.value = "";
-        } else {
-            catErr.innerText = "";
-            const totalPrice = qty * unit * cat;
-            console.log(cat)
-            price.innerText = totalPrice.toFixed(2);
-        }
+let calculatePrice = () => {                                                                    // Llamo a funciones de validación de campos y calculo precio total si todas retornan "true"
+    checkName();
+    checkLastName();
+    checkMail();
+    checkQty();
+    checkCat();
+    if (checkName() && checkLastName() &&
+        checkMail() && checkQty() &&
+        checkCat()) {
+        const totalPrice = qtyInput.value * unit * catInput.value;
+        price.innerText = totalPrice;
     }
 }
 
-reset.addEventListener("click", () => {
-    qtyErr.innerText = "";
-    catErr.innerText = "";
+const emptyInput = (textInput, textSpan) => {                                                   //Función de modificacion de campos vacíos
+    textSpan.innerText = `-Por favor ingrese su ${textInput.placeholder}`;
+    textInput.classList.add("is-invalid");
+    textInput.focus();
+}
+
+const validInput = (textInput, textSpan) => {                                                   //Función de modificación de campos válidos
+    textSpan.innerText = "";
+    textInput.classList.remove("is-invalid");
+    textInput.classList.add("is-valid");
+}
+
+const checkName = () => {                                                                       //Validación "Nombre"
+    if (nameInput.value == "") {
+        emptyInput(nameInput, nameSpan);
+        return false;
+    } else {
+        validInput(nameInput, nameSpan);
+        return true;
+    }
+}
+
+const checkLastName = () => {                                                                   //Validación "Apellido"
+    if (lastNameInput.value == "") {
+        emptyInput(lastNameInput, lastNameSpan);
+        return false;
+    } else {
+        validInput(lastNameInput, lastNameSpan);
+        return true;
+    }
+}
+
+
+const validMail = (mail) => {                                                                   //Expresión Regular Mail (esta expresion soo verifica la existencia de "@" en medio del texto)
+    return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail);
+}
+
+
+const checkMail = () => {                                                                       //Validación "Correo"
+    if (mailInput.value != "" && !validMail(mailInput.value)) {
+        emptyInput(mailInput, mailSpan);
+        mailSpan.innerText = "-Por favor ingrese un mail válido";
+        return false;
+    } else if (mailInput.value == "") {
+        emptyInput(mailInput, mailSpan);
+        return false;
+    } else {
+        validInput(mailInput, mailSpan);
+        return true;
+    }
+}
+
+const checkQty = () => {                                                                       //Validacion "Cantidad"
+    if (qtyInput.value <= 0 || isNaN(qtyInput.value)) {
+        emptyInput(qtyInput, qtySpan)
+        qtySpan.innerText = "- Por favor ingrese un número válido mayor a 0";
+        price.innerText = "";
+        return false;
+    } else {
+        validInput(qtyInput, qtySpan);
+        return true;
+    }
+}
+
+const checkCat = () => {                                                                      //Validación "Categoria / Descuento"
+    if (catInput.value == 0) {
+        emptyInput(catInput, catSpan);
+        catSpan.innerText = "- Por favor seleccione su categoría";
+        price.innerText = "";
+        return false;
+    } else {
+        validInput(catInput, catSpan);
+        return true;
+    }
+}
+
+reset.addEventListener("click", () => {                                                         // Funciónalidad botón Reset
+    let spanList = document.querySelectorAll(".form-group span")                                // Selección y Reseteo de Spans del Form
+    for (let i = 0; i < spanList.length; i++) {
+        spanList[i].innerText = "";
+    }
+
+    let invalidList = document.querySelectorAll(".is-invalid")                                  // Selección y Reseteo de campos inválidos del Form
+    for (let i = 0; i < invalidList.length; i++) {
+        invalidList[i].classList.remove("is-invalid");
+        invalidList[i].innerText = "";
+    }
+
+    let validList = document.querySelectorAll(".is-valid")                                      //Selección y Reseteo de campos válidos del Form
+    for (let i = 0; i < validList.length; i++) {
+        validList[i].classList.remove("is-valid");
+        validList[i].innerText = "";
+    }
 })
-
-
-
-
-// let qtyCheck = (qty) => {
-//     while (qty.value <= 0 || isNaN(qty.value)) {
-//         qtyErr.style.color = "red";
-//         qtyErr.innerText = "- Por favor Ingrese un número válido mayor a 0";
-//     }
-//     qtyErr.innerText = "";
-// }
-
-
-
-// let qtyCheck = (qty) => {
-//     if (qty.value <= 0 || isNaN(qty.value)) {
-//         qtyErr.style.color = "red";
-//         qtyErr.innerText = "- Por favor Ingrese un número válido mayor a 0";
-//         return false
-//     } else {
-//         qtyErr.innerText = "";
-//     }
-// }
-
-
-
-// let qtyCheck = (qty) => {
-//     if (qty.value <= 0 || isNaN(qty.value)) {
-//         if (qtyLabel.children.length === 0) {
-//             qtySpan.innerText = "- Por favor ingrese un número válido mayor a 0"
-//             qtySpan.style.color = "red";
-//             qtyLabel.appendChild(qtySpan);
-//         }
-//     } else {
-//         if (qtyLabel.children.length === 1) { qtyLabel.removeChild(qtySpan) };
-//     }
-// }
-
-// let qtyCheck = (qty) => {
-//     if (qty.value > 0 && !isNaN(qty.value)) {
-//         console.log(qty.value);
-//         qtyLabel.removeChild(qtySpan);
-//     } else {
-//         if (qtyLabel.children.length === 0) {
-//             var qtySpan = document.createElement("span");
-//             qtySpan.innerText = "- Por favor ingrese un número válido mayor a 0"
-//             qtySpan.style.color = "red";
-//             qtyLabel.appendChild(qtySpan);
-//         }
-
-//     }
-// }

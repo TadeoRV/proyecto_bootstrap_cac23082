@@ -31,13 +31,13 @@
                                 <a class="nav-link" href="../index.html">La conferencia</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#oradores">Los Oradores</a>
+                                <a class="nav-link" href="../index.html#oradores">Los Oradores</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#lugarFecha">El Lugar y la Fecha</a>
+                                <a class="nav-link" href="../index.html#lugarFecha">El Lugar y la Fecha</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#formulario">Conviertete en Orador</a>
+                                <a class="nav-link" href="../index.html#formulario">Conviertete en Orador</a>
                             <li class="nav-item">
                                 <a class="nav-link comprarTickets" aria-current="page"
                                     href="#/pages/comprar_tickets.html">
@@ -98,29 +98,34 @@
             <form class="container" action="/Nowhere" id="form">
                 <div class=" form-group row">
                     <div class="col-sm-12 col-md-6 mb-4">
+                        <label for="name">Nombre<span id="nameSpan"></span></label>
                         <input id="name" type="text" class="form-control" placeholder="Nombre">
                     </div>
                     <div class="col-sm-12 col-md-6 mb-4">
+                        <label for="lastName">Apellido<span id="lastNameSpan"></span></label>
                         <input id="lastName" type="text" class="form-control" placeholder="Apellido">
                     </div>
                 </div>
                 <div class="form-group mb-4 row">
                     <div class="col">
-                        <input id="mail" type="email" class="form-control" placeholder="Correo">
+                        <label for="mail">Correo<span id="mailSpan"></span></label>
+                        <input id="mail" class="form-control" placeholder="Correo">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12 col-md-6 mb-4">
-                        <label for="qtyInput">Cantidad<span class="err" id="qtyErr"></span></label>
-                        <input id="qtyInput" name="qtyInput" type="number" class="form-control" placeholder="Cantidad">
+                        <label for="qtyInput">Cantidad<span id="qtySpan"></span></label>
+                        <input id="qtyInput" name="qtyInput" type="number" min="1" class="form-control"
+                            placeholder="Cantidad">
                     </div>
                     <div class="col-sm-12 col-md-6 mb-sm-4 mb-4">
-                        <label for="catInput">Categoria<span class="err" id="catErr"></span></label>
+                        <label for="catInput">Categoria<span id="catSpan"></span></label>
                         <select id="catInput" name="catInput" class="form-select" placeholder="Elija su categoría:">
-                            <option value="" selected>Elija su Categoría:</option>
+                            <option value="0" selected>Elija su Categoría:</option>
                             <option value="0.2">Estudiante</option>
                             <option value="0.5">Trainee</option>
                             <option value="0.7">Junior</option>
+                            <option value="1">Otro/a</option>
                         </select>
                     </div>
                     <div class="container">
